@@ -20,31 +20,45 @@ public class Init {
 		HashMap<SparseMatrix, Integer> edge_freq = new HashMap<SparseMatrix, Integer>();
 		edge_freq = LoadAndRead.ReadEdge( Folder + "pt.txt");
 		
+		//Set of edges which is constant across all topics
+		Set<SparseMatrix> edgeset = edge_freq.keySet();
+		
+		//Edge Multiplier (Initial Value is set to the frequency of each edge)
+		ArrayList<Float> freq = new ArrayList<Float>();
+		Iterator it = edgeset.iterator();
+		while(it.hasNext()){
+			freq.add((float)edge_freq.get(it.next()));
+		}
+		
 		//Creating the word dictionary
 		HashMap<Integer, String> udict = new HashMap<Integer, String>();
 		udict = LoadAndRead.ReadName( Folder + "term.txt" );
 		
-		
 		//Generate Random topic distribution
 		int numberofedges = edge_freq.size();
-		System.out.println(numberofedges);
+		float[][] edgeweight1 = Random_gen.generator(numberofedges, topics);
 		
-		//float[][] edgeweight1 = Random_gen.generator(numberofedges, numberofedges);
-/*		
-		for (int i = 0; i < numberofedges; i++){
-			for (int j = 0; j < numberofedges; j++){
-				//Random rnd = new Random();
-				System.out.print(edgeweight1[i][j]);
-			}
-			
-			System.out.println("");
-			
-	}*/
+		//Create topic and its children
+		Topic Maintopic = new Topic(edgeset, freq, edgeweight1, topics);
+		Maintopic.Set_edgeweight();
 		
 		
+//		float[][] test = Maintopic.Get_edgeweight();
+//		int ni = test.length;
+//		int nj = test[0].length;
+//		for (int i = 0 ; i <100; i++){
+//			for(int j = 0; j <nj; j++){
+//				System.out.print(test[i][j] + "--");
+//			}
+//			System.out.println("");
+//		}
 		
 		
-		//Create children
+		
+		
+		
+		
+		
 		//Find rhoi and theta 1
 		//Find eij
 		

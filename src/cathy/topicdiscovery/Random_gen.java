@@ -20,6 +20,20 @@ public class Random_gen {
 			}
 		}
 		
+		//Normalize the edge weight and return normalized weight
+		for (int i = 0; i < rows; i++){
+			
+			float sum = 0;
+			for (int j = 0; j < cols; j++){
+				sum = sum + edgefraction[i][j];
+			}
+			
+			for (int j = 0; j < cols; j++){
+				edgefraction[i][j] = edgefraction[i][j]/sum;
+			}	
+		}
+		
+		
 		return edgefraction;
 		
 	}
