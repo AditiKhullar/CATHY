@@ -5,7 +5,11 @@ import java.io.*;
 import cathy.matrix.SparseMatrix;
 import cathy.matrix.Matrix;
 
-
+/**
+ * Generates random number for each sub topic (returns a new float 2D array)
+ * @author aditi_khullar
+ *
+ */
 public class Random_gen {
 	
 	public static float[][] generator(int rows, int cols){

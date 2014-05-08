@@ -34,7 +34,9 @@ public class Topic {
 		rho_z = new float[topics];
 		Arrays.fill(rho_z, 0);
 		thetai = new float[Get_Maxwordid()][topics];
-		Set_thetai();
+		Fillzero2D(thetai);
+		this.name = new String();
+		
 	}
 
 	public void Set_edgeweight() {
@@ -101,9 +103,6 @@ public class Topic {
 		return depth;
 	}
 	
-	public void Set_name(String n){
-		this.name = n;
-	}
 	
 	public String Get_name(){
 		return name;
@@ -131,17 +130,9 @@ public class Topic {
 		return rho_z;
 	}
 	
-	public void Set_thetai(){
-		for(int i = 0; i< Get_Maxwordid(); i++){
-			for(int j = 0; j < Get_Totalsubtopics(); j ++){
-				thetai[i][j] = 0;
-			}
-			
-		}
-			
-	}
 	
 	public void Set_thetai(float[][] temp){
+		
 		for(int i = 0; i< temp.length; i++){
 			for(int j = 0; j < temp[0].length; j ++){
 				thetai[i][j] = temp[i][j];
@@ -173,6 +164,12 @@ public class Topic {
 		return temp;
 	}
 	
+	/**
+	 * This function allocates a new 2 dimensional array and send the clone of the given array back
+	 * @param orig
+	 * @return
+	 */
+	
 
 	public float[][] clone2df(float[][] orig){
 		int ii = orig.length;
@@ -186,12 +183,18 @@ public class Topic {
 		return temp;
 	}
 	
+	
+	/**
+	 * This function creates an Array List of Array List from a given 2 dimensional Float array
+	 * @param arr
+	 * @return
+	 */
 	public ArrayList<ArrayList<Float>> ArraytoArrayList(float[][] arr){
 		ArrayList<ArrayList<Float>> arrayL = new ArrayList<ArrayList<Float>>();
-
+		
 		for (int j = 0; j < arr[0].length; j++) {
 			ArrayList<Float> tempL = new ArrayList<Float>();
-			for (int i = 0; i < arr.length; j++) {
+			for (int i = 0; i < arr.length; i++) {
 				tempL.add(arr[i][j]);
 			}
 			arrayL.add(tempL);
@@ -200,6 +203,28 @@ public class Topic {
 		return arrayL;
 	}
 	
+	
+	/**
+	 * This functions fills a given 2 Dimensional array with zeros
+	 * @param fill
+	 * @return
+	 */
+	
+	public float[][] Fillzero2D(float[][] fill){
+		int ii = fill.length;
+		int jj = fill[0].length;
+		for (int i= 0; i< ii; i ++){
+			for (int j=0; j<jj; j++){
+				fill[i][j] = 0;
+			}
+		}
+		
+		return fill;
+	}
+	
+	/**
+	 * TODO: a function to check if the given 2 D arrays has zeroes in it, and hence can or can not be used for division
+	 */
 	
 	
 	

@@ -3,6 +3,13 @@ package cathy.topicdiscovery;
 import java.util.ArrayList;
 
 
+/**
+ * The tree structure for each topics hierarchy
+ * @author aditi_khullar
+ *
+ */
+
+
 public class Tree {
 
 	private Topic root;
@@ -36,6 +43,13 @@ public class Tree {
 		return n;
 
 	}
+	
+	//TODO: get top 100 unigrams of each level
+	//TODO: get names of each topics
+//	public String Get_topicAtLevel(Topic root){
+//		
+//	}
+	
 	
 	
 	

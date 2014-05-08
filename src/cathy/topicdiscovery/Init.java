@@ -11,36 +11,26 @@ public class Init {
 	
 	public static String Folder = "/Users/aditi_khullar/Documents/workspace/CATHY_JAVA/data/20conf/";
 	
+	/**
+	 * Main file which creates edge data
+	 * @param args
+	 */
+	
 	public static void main (String[] args){
 	    int topics = 4;
-		int depth = 3;
-		int iter = 10000;
+		int depth = 2;
+		int iter = 100;
 		
 		
 		//Creating the main edge data structure
 		HashMap<SparseMatrix, Integer> edge_freq = new HashMap<SparseMatrix, Integer>();
 		
 		long startTime = new Date().getTime();
+		//edge_freq = LoadAndRead.ReadEdge( Folder + "title-term.txt");
 		edge_freq = LoadAndRead.ReadEdge( Folder + "pt.txt");
 		long endTime = new Date().getTime();
-		System.out.println("Time take to create the initial edge structure(seconds)" + ((endTime - startTime)/1000));
+		System.out.println("Time taken to create the initial edge structure(miliseconds): " + ((endTime - startTime)));
 		
-		
-		
-		// For iterating over the edge set
-		/*
-		Iterator<SparseMatrix> it = edge_freq.keySet().iterator(); 
-		int i = 0;
-		while(it.hasNext()){
-			SparseMatrix temp = it.next();
-			System.out.print(temp.getwordid1() + " ");
-			System.out.print(temp.getwordid2());
-			System.out.println();
-			i++;
-			if(i==500){
-			break;
-			}
-		}*/
 		
 		//Set of edges which is constant across all topics
 		ArrayList<SparseMatrix> edgeset = new ArrayList<SparseMatrix>();
@@ -83,22 +73,16 @@ public class Init {
 		
 		List<String> addedList = new ArrayList<String>();
 		addedList.add(Maintopic.Get_name());
+		long startime = new Date().getTime();
 	    BuildTree.addTopicsLevelsRec(Maintopic, depth, topics, iter, addedList);
-	    
-		//Find rhoi and theta 1
-	    
-	    //This call is to be made in the BuildTree's recurrsive function
-		//BuildTree.EM(Maintopic); 	
+	    long endtime = new Date().getTime();
+	    		
 		
-		//Add children finding eij for each
-		//Run for each children
-		//Find eij
+		System.out.println("Topic:" + topics);
+		System.out.println("Depth:" + depth );
+		System.out.println("TIME:" + (endtime - startime));
 		
 		
-		
-		
-		
-		System.out.println("The edge data structure and dictionary created");
 		
 	}
 	

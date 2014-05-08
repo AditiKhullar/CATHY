@@ -1,6 +1,11 @@
 package cathy.matrix;
 
-
+/**
+ * Structure of the edge
+ * TODO: Rename it to something relevant
+ * @author aditi_khullar
+ *
+ */
 public class SparseMatrix  {
 	
 	private Integer wordid1;
